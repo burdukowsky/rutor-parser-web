@@ -1,0 +1,8 @@
+<form #mainForm="ngForm" (ngSubmit)="onMainFormSubmit()">
+  <input type="text" [(ngModel)]="search" name="search">
+  <button type="submit">Найти</button>
+</form>
+
+<div *ngFor="let result of results">
+  <a [href]="sanitize(result.magnet)">{{result.title}}</a>
+</div>
