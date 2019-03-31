@@ -1,5 +1,5 @@
 <form #mainForm="ngForm" (ngSubmit)="onMainFormSubmit()">
-  <input type="text" [(ngModel)]="search" name="search" required>
+  <input type="text" [(ngModel)]="search" name="search" minlength="3" required>
   <button type="submit" [disabled]="!mainForm.form.valid">Найти</button>
 </form>
 
