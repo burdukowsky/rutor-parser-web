@@ -1,6 +1,6 @@
 <form #mainForm="ngForm" (ngSubmit)="onMainFormSubmit()">
-  <input type="text" [(ngModel)]="search" name="search">
-  <button type="submit">Найти</button>
+  <input type="text" [(ngModel)]="search" name="search" required>
+  <button type="submit" [disabled]="!mainForm.form.valid">Найти</button>
 </form>
 
 <div *ngFor="let result of results">
