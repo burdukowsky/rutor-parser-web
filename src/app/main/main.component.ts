@@ -14,6 +14,7 @@ import {Result} from './result';
 export class MainComponent implements OnInit {
   search: string;
   results: Array<Result>;
+  errorMessage: string;
   errorGetResults: boolean;
   private errorGetResults$ = new Subject<boolean>();
 
@@ -34,6 +35,7 @@ export class MainComponent implements OnInit {
     this.mainService.getResults(this.search).subscribe(results => {
       this.results = results;
     }, e => {
+      this.errorMessage = `Ошибка ${e.status}: ${e.error.message}`;
       this.errorGetResults$.next(true);
       console.error(e);
     });

@@ -3,7 +3,7 @@
   <button type="submit" [disabled]="!mainForm.form.valid">Найти</button>
 </form>
 
-<div *ngIf="errorGetResults">Ошибка получения данных</div>
+<div *ngIf="errorGetResults">{{errorMessage}}</div>
 
 <div *ngFor="let result of results">
   <a [href]="sanitize(result.magnet)">{{result.title}}</a>
