@@ -5,6 +5,8 @@
 
 <div *ngIf="errorGetResults">{{errorMessage}}</div>
 
+<div *ngIf="noResults">Ничего не найдено</div>
+
 <div *ngFor="let result of results">
   <a [href]="sanitize(result.magnet)">{{result.title}}</a>
 </div>

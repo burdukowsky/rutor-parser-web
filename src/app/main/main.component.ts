@@ -21,6 +21,10 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService, private domSanitizer: DomSanitizer) {
   }
 
+  get noResults(): boolean {
+    return this.results && this.results.length === 0;
+  }
+
   ngOnInit() {
     this.errorGetResults$.subscribe(state => this.errorGetResults = state);
     this.errorGetResults$.pipe(debounceTime(5000)).subscribe(() => this.errorGetResults = false);
@@ -31,7 +35,7 @@ export class MainComponent implements OnInit {
   }
 
   onMainFormSubmit() {
-    this.results = [];
+    this.results = null;
     this.mainService.getResults(this.search).subscribe(results => {
       this.results = results;
     }, e => {
