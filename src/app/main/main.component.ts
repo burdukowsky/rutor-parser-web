@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 
 import {MainService} from './main.service';
 import {Result} from './result';
@@ -10,13 +12,17 @@ import {Result} from './result';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  private search: string;
-  private results: Array<Result>;
+  search: string;
+  results: Array<Result>;
+  errorGetResults: boolean;
+  private errorGetResults$ = new Subject<boolean>();
 
   constructor(private mainService: MainService, private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
+    this.errorGetResults$.subscribe(state => this.errorGetResults = state);
+    this.errorGetResults$.pipe(debounceTime(5000)).subscribe(() => this.errorGetResults = false);
   }
 
   sanitize(url: string) {
@@ -24,9 +30,11 @@ export class MainComponent implements OnInit {
   }
 
   onMainFormSubmit() {
+    this.results = [];
     this.mainService.getResults(this.search).subscribe(results => {
       this.results = results;
     }, e => {
+      this.errorGetResults$.next(true);
       console.error(e);
     });
   }
