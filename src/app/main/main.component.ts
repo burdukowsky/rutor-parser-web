@@ -12,6 +12,7 @@ import {Result} from './result';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
   search: string;
   results: Array<Result>;
   errorMessage: string;
@@ -39,7 +40,16 @@ export class MainComponent implements OnInit {
     this.mainService.getResults(this.search).subscribe(results => {
       this.results = results;
     }, e => {
-      this.errorMessage = `Ошибка ${e.status}: ${e.error.message}`;
+      let errorMessage;
+      if (e.status === 0) {
+        errorMessage = e.statusText;
+      } else {
+        errorMessage = `Ошибка ${e.status}`;
+      }
+      if (e.error.message) {
+        errorMessage += `: ${e.error.message}`;
+      }
+      this.errorMessage = errorMessage;
       this.errorGetResults$.next(true);
       console.error(e);
     });

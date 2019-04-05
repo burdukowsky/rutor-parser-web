@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Boycott';
+  src: url('assets/fonts/boycott/boycott.eot');
+  src: url('assets/fonts/boycott/boycott.eot?#iefix') format('embedded-opentype'),
+  url('assets/fonts/boycott/boycott.woff2') format('woff2'),
+  url('assets/fonts/boycott/boycott.woff') format('woff'),
+  url('assets/fonts/boycott/boycott.ttf') format('truetype');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+table.table {
+  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+}
+
+img.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.text-danger {
+  color: #dc3545;
+}

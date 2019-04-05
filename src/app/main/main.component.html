@@ -1,12 +1,29 @@
-<form #mainForm="ngForm" (ngSubmit)="onMainFormSubmit()">
-  <input type="text" [(ngModel)]="search" name="search" minlength="3" required>
-  <button type="submit" [disabled]="!mainForm.form.valid">Найти</button>
+<form id="searchForm"
+      #mainForm="ngForm"
+      (ngSubmit)="onMainFormSubmit()">
+  <input type="text"
+         autofocus
+         [(ngModel)]="search"
+         name="search"
+         minlength="3"
+         required>
+  <button type="submit"
+          [disabled]="!mainForm.form.valid">
+    Найти
+  </button>
 </form>
 
-<div *ngIf="errorGetResults">{{errorMessage}}</div>
+<div *ngIf="errorGetResults" id="errorMessage" class="text-danger">{{errorMessage}}</div>
 
-<div *ngIf="noResults">Ничего не найдено</div>
+<div *ngIf="noResults" id="noResults">Ничего не найдено</div>
 
-<div *ngFor="let result of results">
-  <a [href]="sanitize(result.magnet)">{{result.title}}</a>
-</div>
+<table id="resultsTable" class="table">
+  <tr *ngFor="let result of results">
+    <td>{{result.title}}</td>
+    <td class="magnet-cell">
+      <a [href]="sanitize(result.magnet)" class="magnet">
+        <img src="../../assets/img/magnet.png" class="img-responsive">
+      </a>
+    </td>
+  </tr>
+</table>
