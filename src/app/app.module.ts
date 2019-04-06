@@ -7,12 +7,14 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {HeaderComponent} from './header/header.component';
+import {SearchFormComponent} from './main/search-form/search-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<form id="searchForm"
+      #searchForm="ngForm"
+      (ngSubmit)="onSearchFormSubmit()">
+  <input type="text"
+         autofocus
+         [(ngModel)]="search"
+         name="search"
+         minlength="3"
+         required>
+  <button type="submit"
+          [disabled]="!searchForm.form.valid">
+    Найти
+  </button>
+</form>

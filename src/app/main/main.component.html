@@ -1,17 +1,4 @@
-<form id="searchForm"
-      #mainForm="ngForm"
-      (ngSubmit)="onMainFormSubmit()">
-  <input type="text"
-         autofocus
-         [(ngModel)]="search"
-         name="search"
-         minlength="3"
-         required>
-  <button type="submit"
-          [disabled]="!mainForm.form.valid">
-    Найти
-  </button>
-</form>
+<app-search-form (submitted)="getResults($event)"></app-search-form>
 
 <div *ngIf="errorGetResults" id="errorMessage" class="text-danger">{{errorMessage}}</div>
 

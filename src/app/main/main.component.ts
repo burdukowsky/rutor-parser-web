@@ -13,7 +13,6 @@ import {Result} from './result';
 })
 export class MainComponent implements OnInit {
 
-  search: string;
   results: Array<Result>;
   errorMessage: string;
   errorGetResults: boolean;
@@ -35,9 +34,9 @@ export class MainComponent implements OnInit {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
 
-  onMainFormSubmit() {
+  getResults(search: string) {
     this.results = null;
-    this.mainService.getResults(this.search).subscribe(results => {
+    this.mainService.getResults(search).subscribe(results => {
       this.results = results;
     }, e => {
       let errorMessage;
