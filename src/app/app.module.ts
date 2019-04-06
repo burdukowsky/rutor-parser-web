@@ -9,13 +9,15 @@ import {AppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {HeaderComponent} from './header/header.component';
 import {SearchFormComponent} from './main/search-form/search-form.component';
+import {SpinnerComponent} from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     HeaderComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,10 @@ import {SearchFormComponent} from './main/search-form/search-form.component';
     NgHttpLoaderModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    SpinnerComponent
+  ]
 })
 export class AppModule {
 }
