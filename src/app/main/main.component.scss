@@ -11,6 +11,10 @@
       .result-info {
         font-size: 83%;
         margin-top: 0.25rem;
+
+        span:not(:last-of-type) {
+          margin-right: 0.25rem;
+        }
       }
 
       img {
