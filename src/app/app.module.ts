@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgHttpLoaderModule} from 'ng-http-loader';
@@ -10,6 +10,11 @@ import {MainComponent} from './main/main.component';
 import {HeaderComponent} from './header/header.component';
 import {SearchFormComponent} from './main/search-form/search-form.component';
 import {SpinnerComponent} from './spinner/spinner.component';
+import {AppConfig} from './app-config.service';
+
+export function AppConfigFactory(appConfig: AppConfig) {
+  return () => appConfig.init();
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +31,14 @@ import {SpinnerComponent} from './spinner/spinner.component';
     HttpClientModule,
     NgHttpLoaderModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: AppConfigFactory,
+      deps: [AppConfig],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     SpinnerComponent
